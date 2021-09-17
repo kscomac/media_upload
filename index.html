@@ -1,31 +1,37 @@
-<!-- OGPをだし分ける -->
-<head></head>
-<body>
-  <div id="tweetArea"></div>
-</body>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="twitter:site" content="@shinoha58653024" />
+    <meta property="og:title" content="JavaScriptでスロットおみくじ作成" /> 
+    <meta property="og:description" content="おみくじ結果はこちら。" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:url" content="https://kscomac.github.io/" />
+    <meta property="og:image" content="https://kscomac.github.io/img1.jpg"> -->
+    <title>JavaScriptでスロットおみくじ作成</title>
+    <link rel=”icon” href=“./favicon.ico”>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<script>
-  'use strict'
-
-  var tweetArea = document.getElementById('tweetArea');
- 
-// tweetボタンの生成
-generate_tweet_button(tweetArea, 'https://kscomac.github.io/media_upload/sample1.html', 'サンプル1');
-generate_tweet_button(tweetArea, 'https://kscomac.github.io/media_upload/sample2.html', 'サンプル2');
- 
-// tweetボタンを生成する関数
-function generate_tweet_button(area, url, text) {
-    var twBtn = document.createElement('div');
-    twBtn.className = 'twitter-btn';
-    var twHref = 'https://twitter.com/share?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
-    var clickEv = 'onclick="popupWindow(this.href); return false;"';
-    var twLink = '<a href="' + twHref + '" ' + clickEv + '>' + text + '</a>';
-    twBtn.innerHTML = twLink;
-    area.appendChild(twBtn);
-}
- 
-// クリック時にポップアップで表示させる関数
-function popupWindow(url) {
-    window.open(url, '', 'width=580,height=400,menubar=no,toolbar=no,scrollbars=yes');
-}
-</script>
+  <body>
+    <h1>JavaScriptでスロットおみくじ作成（not using API）</h1>
+    <div id="tgPara2Images">
+      <img src="img1.jpg" alt="startImage" id="paraImage">
+      <form>
+          <input type="button" value="START" id="startButton">
+          <input type="button" value="STOP" id="stopButton" disabled="true"><br>
+          <input type="button" value="<<" id="firstButton">
+          <input type="button" value="<" id="prevButton">
+          <input type="button" value=">" id="nextButton">
+          <input type="button" value=">>" id="lastButton">
+      </form>
+      <!-- <a href="https://twitter.com/share" class="twitter-share-button-template" data-url="https://dummy.com" data-hashtags="おみくじ" style="display:none;" data-size="large">Tweet</a> -->
+      <div id="tweet-area"></div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+  <!-- <script>
+    window.twttr=(function(d,s,id){var js,fjs=d.getElementsByT  agName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script> -->
+  <script src="./script.js"></script>
+</html>
