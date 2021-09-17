@@ -1,31 +1,17 @@
-<!-- OGPをだし分ける -->
-<head></head>
-<body>
-  <div id="tweetArea"></div>
-</body>
-
-<script>
-  'use strict'
-
-  var tweetArea = document.getElementById('tweetArea');
+<!-- OGP START -->
+<meta property="og:type" content="article" />
+<meta property="og:description" content="JavaScriptでスロットおみくじ作成" />
+<meta property="og:title" content="サンプル1 | 「TwitterのtweetボタンでOGPを出し分ける」のデモページ | cly7796.net" />
+<meta property="og:url" content="https://kscomac.github.io/media_upload/" />
+<meta property="og:image" content="https://kscomac.github.io/media_upload/img1.jpg" />
+<meta property="og:site_name" content="ken" />
+<meta property="og:locale" content="ksco" />
+<!-- //OGP end -->
  
-// tweetボタンの生成
-generate_tweet_button(tweetArea, 'https://cly7796.net/blog/sample/separate-ogp-of-tweet-button/sample1.html', 'サンプル1');
-generate_tweet_button(tweetArea, 'https://cly7796.net/blog/sample/separate-ogp-of-tweet-button/sample2.html', 'サンプル2');
- 
-// tweetボタンを生成する関数
-function generate_tweet_button(area, url, text) {
-    var twBtn = document.createElement('div');
-    twBtn.className = 'twitter-btn';
-    var twHref = 'https://twitter.com/share?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
-    var clickEv = 'onclick="popupWindow(this.href); return false;"';
-    var twLink = '<a href="' + twHref + '" ' + clickEv + '>' + text + '</a>';
-    twBtn.innerHTML = twLink;
-    area.appendChild(twBtn);
-}
- 
-// クリック時にポップアップで表示させる関数
-function popupWindow(url) {
-    window.open(url, '', 'width=580,height=400,menubar=no,toolbar=no,scrollbars=yes');
-}
-</script>
+<!-- twitter START -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@shinoha58653024" />
+<meta name="twitter:description" content="JavaScriptでスロットおみくじ作成" />
+<meta name="twitter:title" content="サンプル1 | 「TwitterのtweetボタンでOGPを出し分ける」のデモページ | おみくじ" />
+<meta name="twitter:image" content="https://kscomac.github.io/media_upload/img1.jpg" />
+<!-- //twitter end -->
