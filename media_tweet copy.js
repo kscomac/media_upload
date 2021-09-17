@@ -14,7 +14,7 @@ $(function () {
 });
 
 // Load your image
-var data = require('fs').readFileSync('./img1.jpg');
+var data = require('fs').readFileSync('https://kscomac.github.io/media_upload/img1.jpg');
 
 // Make post request on media endpoint. Pass file data as media parameter
 client.post('media/upload', {media: data}, function(error, media, response) {
