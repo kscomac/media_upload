@@ -8,7 +8,8 @@ $(function () {
   var timerName;
 
   for (i = 0; i < cnt; i++) {
-    imgs[i] = "img" + (i + 1) + ".jpg";
+    // imgs[i] = "img" + (i + 1) + ".jpg";
+    imgs[i] = "img" + (i + 1);
   }
 
   //timerName = setInterval(pars2images, speed);   // 自動的に開始する場合はコメント外す
@@ -19,7 +20,7 @@ $(function () {
     // var msg = imgs[now]
     // document.getElementById("PassageArea").innerHTML = msg;   // 表示更新
 
-    $("#paraImage").attr("src", './' + imgs[now]);
+    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
     if (now >= imgs.length - 1) {
       now = -1;
     }
@@ -99,7 +100,7 @@ $(function () {
   var tweetArea = document.getElementById('tweet-area');
  
 // tweetボタンの生成
-generate_tweet_button(tweetArea, 'https://kscomac.github.io/media_upload/"sample"+imgs[now]+".html"', 'サンプル1');
+generate_tweet_button(tweetArea, 'https://kscomac.github.io/media_upload/' + imgs[now]+ '.html', 'tweet');
  
 // tweetボタンを生成する関数ß
 function generate_tweet_button(area, url, text) {
