@@ -96,7 +96,7 @@ $(function () {
   // remove any previous clone
   $('#tweet-area').empty()
 
-  var tweetArea = document.getElementById('tweetArea');
+  var tweetArea = document.getElementById('tweet-area');
  
 // tweetボタンの生成
 generate_tweet_button(tweetArea, 'https://kscomac.github.io/media_upload/"sample"+imgs[now]+".html"', 'サンプル1');
