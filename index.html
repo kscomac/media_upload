@@ -1,178 +1,37 @@
-// APIを使用せず、既存のTwitter shareボタンを編集したもの
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="twitter:site" content="@shinoha58653024" />
+    <meta property="og:title" content="JavaScriptでスロットおみくじ作成" /> 
+    <meta property="og:description" content="おみくじ結果はこちら。" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:url" content="https://kscomac.github.io/" />
+    <meta property="og:image" content="https://kscomac.github.io/img1.jpg"> -->
+    <title>JavaScriptでスロットおみくじ作成</title>
+    <link rel=”icon” href=“./favicon.ico”>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-$(function () {
-  var imgs = new Array();
-  var cnt = 9; // 画像枚数
-  var speed = 500; // ミリ秒(1秒=1000)
-  var now = -1;
-  var timerName;
-
-  for (i = 0; i < cnt; i++) {
-    // imgs[i] = "img" + (i + 1) + ".jpg";
-    imgs[i] = "img" + (i + 1);
-  }
-
-  //timerName = setInterval(pars2images, speed);   // 自動的に開始する場合はコメント外す
-
-  // パラパラ実行
-  function pars2images() {
-    now++;
-    // var msg = imgs[now]
-    // document.getElementById("PassageArea").innerHTML = msg;   // 表示更新
-
-    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
-    if (now >= imgs.length - 1) {
-      now = -1;
-    }
-
-  }
-
-  // 次
-  $("#nextButton").click(function () {
-    now++;
-    if (now == imgs.length) {
-      now = 0;
-    }
-    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
-
-    // remove any previous clone
-    $('#tweet-area').empty()
-
-    // create a clone of the twitter share button template
-    var clone = $('.twitter-share-button-template').clone()
-
-    // fix up our clone
-    clone.removeAttr('style'); // unhide the clone
-    clone.attr('data-url', location.href + imgs[now] + ".jpg");
-    clone.attr('class', 'twitter-share-button'); 
-    // copy cloned button into div that we can clear later
-    $('#tweet-area').append(clone);
-
-    // reload twitter scripts to force them to run, converting a to iframe
-    $.getScript('https://platform.twitter.com/widgets.js');
-    
-  });
-
-  // 前
-  $("#prevButton").click(function () {
-    now--;
-    if (now == -1) {
-      now = cnt - 1;
-    }
-    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
-
-    // remove any previous clone
-    $('#tweet-area').empty()
-
-    // create a clone of the twitter share button template
-    var clone = $('.twitter-share-button-template').clone()
-
-    // fix up our clone
-    clone.removeAttr('style'); // unhide the clone
-    clone.attr('data-url', location.href + imgs[now]);
-    clone.attr('class', 'twitter-share-button'); 
-    // copy cloned button into div that we can clear later
-    $('#tweet-area').append(clone);
-
-    // reload twitter scripts to force them to run, converting a to iframe
-    $.getScript('https://platform.twitter.com/widgets.js');
-    
-
-  });
-
-  // スタート
-  $("#startButton").click(function () {
-    timerName = setInterval(pars2images, speed);
-    // スタートボタンを押せないようにする
-    $(this).attr("disabled", true);
-    // ストップボタンを押せるようにする
-    $("#stopButton").attr("disabled", false);
-
-    
-  });
-
-  // ストップ
-  $("#stopButton").click(function () {
-
-  // remove any previous clone
-  $('#tweet-area').empty()
-
-  var tweetArea = document.getElementById('tweet-area');
- 
-// tweetボタンの生成
-generate_tweet_button(tweetArea, 'https://kscomac.github.io/media_upload/' + imgs[now]+ '.html', 'tweet');
- 
-// tweetボタンを生成する関数ß
-function generate_tweet_button(area, url, text) {
-    var twBtn = document.createElement('div');
-    twBtn.className = 'twitter-btn';
-    var twHref = 'https://twitter.com/share?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
-    var clickEv = 'onclick="popupWindow(this.href); return false;"';
-    var twLink = '<a href="' + twHref + '" ' + clickEv + '>' + text + '</a>';
-    twBtn.innerHTML = twLink;
-    area.appendChild(twBtn);
-}
- 
-// クリック時にポップアップで表示させる関数
-function popupWindow(url) {
-    window.open(url, '', 'width=580,height=400,menubar=no,toolbar=no,scrollbars=yes');
-}
-      
-    if (timerName) {
-      clearInterval(timerName);
-    }
-    // ストップボタンを押せないようにする
-    $(this).attr("disabled", true);
-    // スタートボタンを押せるようにする
-    $("#startButton").attr("disabled", false);
-  });
-  
-  // 最初
-  $("#firstButton").click(function () {
-    now = 0;
-    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
-
-    // remove any previous clone
-    $('#tweet-area').empty()
-
-    // create a clone of the twitter share button template
-    var clone = $('.twitter-share-button-template').clone()
-
-    // fix up our clone
-    clone.removeAttr('style'); // unhide the clone
-    clone.attr('data-url', location.href + imgs[now]);
-    clone.attr('class', 'twitter-share-button'); 
-    // copy cloned button into div that we can clear later
-    $('#tweet-area').append(clone);
-
-    // reload twitter scripts to force them to run, converting a to iframe
-    $.getScript('https://platform.twitter.com/widgets.js');
-    
-  });
-  
-  // 最後
-  $("#lastButton").click(function () {
-    now = cnt - 1;
-    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
-
-    // remove any previous clone
-    $('#tweet-area').empty()
-
-    // create a clone of the twitter share button template
-    var clone = $('.twitter-share-button-template').clone()
-
-    // fix up our clone
-    clone.removeAttr('style'); // unhide the clone
-    clone.attr('data-url', location.href + imgs[now]);
-    clone.attr('class', 'twitter-share-button'); 
-    // copy cloned button into div that we can clear later
-    $('#tweet-area').append(clone);
-
-    // reload twitter scripts to force them to run, converting a to iframe
-    $.getScript('https://platform.twitter.com/widgets.js');
-    
-  });
-
-  
-
-});
+  <body>
+    <h1>JavaScriptでスロットおみくじ作成</h1>
+    <div id="tgPara2Images">
+      <img src="img1.jpg" alt="startImage" id="paraImage">
+      <form>
+          <input type="button" value="START" id="startButton">
+          <input type="button" value="STOP" id="stopButton" disabled="true"><br>
+          <input type="button" value="<<" id="firstButton">
+          <input type="button" value="<" id="prevButton">
+          <input type="button" value=">" id="nextButton">
+          <input type="button" value=">>" id="lastButton">
+      </form>
+      <!-- <a href="https://twitter.com/share" class="twitter-share-button-template" data-url="https://dummy.com" data-hashtags="おみくじ" style="display:none;" data-size="large">Tweet</a> -->
+      <div id="tweet-area"></div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+  <!-- <script>
+    window.twttr=(function(d,s,id){var js,fjs=d.getElementsByT  agName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script> -->
+  <script src="./script.js"></script>
+</html>
