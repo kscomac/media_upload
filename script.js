@@ -33,7 +33,7 @@ $(function () {
     if (now == imgs.length) {
       now = 0;
     }
-    $("#paraImage").attr("src", './' + imgs[now]);
+    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
 
     // remove any previous clone
     $('#tweet-area').empty()
@@ -43,7 +43,7 @@ $(function () {
 
     // fix up our clone
     clone.removeAttr('style'); // unhide the clone
-    clone.attr('data-url', location.href + imgs[now]);
+    clone.attr('data-url', location.href + imgs[now] + ".jpg");
     clone.attr('class', 'twitter-share-button'); 
     // copy cloned button into div that we can clear later
     $('#tweet-area').append(clone);
@@ -59,7 +59,7 @@ $(function () {
     if (now == -1) {
       now = cnt - 1;
     }
-    $("#paraImage").attr("src", './' + imgs[now]);
+    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
 
     // remove any previous clone
     $('#tweet-area').empty()
@@ -130,7 +130,7 @@ function popupWindow(url) {
   // 最初
   $("#firstButton").click(function () {
     now = 0;
-    $("#paraImage").attr("src", './' + imgs[now]);
+    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
 
     // remove any previous clone
     $('#tweet-area').empty()
@@ -153,7 +153,7 @@ function popupWindow(url) {
   // 最後
   $("#lastButton").click(function () {
     now = cnt - 1;
-    $("#paraImage").attr("src", './' + imgs[now]);
+    $("#paraImage").attr("src", './' + imgs[now] + ".jpg");
 
     // remove any previous clone
     $('#tweet-area').empty()
