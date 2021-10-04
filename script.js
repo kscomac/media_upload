@@ -1,4 +1,6 @@
 // APIを使用せず、既存のTwitter shareボタンを編集したもの
+// Twitter Card使用
+// 画像サイズ注意　summuryは1:1, largeは1.91:1
 
 $(function () {
   var imgs = new Array();
